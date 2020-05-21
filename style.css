@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900|Montserrat:400,700&display=swap");
+
+/*  Reset styles*/
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*  Start custom styles */
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #080808;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+@media only screen and (max-width: 1050px) {
+  h2,
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1rem;
+}
+
+.header-text {
+  background-image: url(https://cdn.glitch.com/5c525b2d-786a-4be7-9e68-6c0eb4cb7c78%2Flogo%2Btransparent.jpg?v=1566421685807);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 1.5rem;
+  margin-right: auto;
+  margin-left: auto;
+  /*   visually hides the h1 text, but makes it accessible to screenreaders  */
+  text-indent: -10000px;
+}
+
+.subhead {
+  margin-bottom: 2rem;
+}
+
+.topic-question-container {
+  width: 100%;
+  max-width: 1024px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1024px) {
+  .topic-question-container {
+    width: 50%;
+  }
+}
+
+/*  Form styles */
+.demographic-form-row {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.demographic-label {
+  margin-bottom: 0.75rem;
+}
+
+.demographic-select {
+  width: 100%;
+}
+
+.query-chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1024px;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  margin-left: auto;
+}
+
+.query-container {
+  text-align: center;
+  flex-grow: 1;
+  order: -1;
+}
+
+.sample-size{
+  text-align: center;
+  /* A magic number that makes the text not look too long on desktop */
+  max-width: 650px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.selected-topic {
+  font-weight: 700;
+}
+
+.chart-container {
+  flex-grow: 4;
+  order: 1;
+  /*   leave room to allow star spinner */
+  min-height: 200px;
+}
+
+@media only screen and (max-width: 800px) {
+  .query-chart-container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .query-container {
+    order: 1;
+  }
+  .chart-container {
+    order: -1;
+    /*   magic size that holds the space of the chart on desktop while data loads   */
+    height: 600px;
+    width: 780px;
+    margin-right: 20px;
+  }
+}
+
+.about-container {
+  max-width: 700px;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  margin-left: auto;
+}
+
+.about-header {
+  text-align: center;
+}
+
+footer {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+footer ul > li {
+  display: inline-block;
+  text-align: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+/*  SPINNER ANIMATIONS */
+.spinner {
+  width: 10rem;
+  height: 3rem;
+
+  position: relative;
+  /* Pushes the spinner lower into the chart container */
+  margin: 150px auto;
+}
+
+.double-bounce_1,
+.double-bounce_2 {
+  position: relative;
+  display: block;
+  width: 0px;
+  height: 0px;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  opacity: 0.5;
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+  animation: sk-bounce 2s infinite ease-in-out;
+
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+  transform: rotate(35deg);
+}
+
+.double-bounce_1:before,
+.double-bounce_2:before {
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: -45px;
+  left: -65px;
+  display: block;
+  content: "";
+  transform: rotate(-35deg);
+}
+
+.double-bounce_1:after,
+.double-bounce_2:after {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: -105px;
+  width: 0px;
+  height: 0px;
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+  transform: rotate(-70deg);
+  content: "";
+}
+
+@-webkit-keyframes sk-bounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(0.5);
+  }
+}
+
+@keyframes sk-bounce {
+  0%,
+  100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+  }
+}
+
+.double-bounce_1 {
+  color: #40dab2;
+  border-bottom: 70px solid #40dab2;
+}
+
+.double-bounce_1:before {
+  border-bottom: 80px solid #40dab2;
+}
+
+.double-bounce_1:after {
+  color: #40dab2;
+  border-bottom: 70px solid #40dab2;
+}
+
+.double-bounce_2 {
+  color: #8a00d4;
+  border-bottom: 70px solid #8a00d4;
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+.double-bounce_2:before {
+  border-bottom: 80px solid #8a00d4;
+}
+
+.double-bounce_2:after {
+  color: #8a00d4;
+  border-bottom: 70px solid #8a00d4;
+}

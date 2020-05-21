@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Data for Progress</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.com/5c525b2d-786a-4be7-9e68-6c0eb4cb7c78%2Fbar-chart_1f4ca.png?v=1567444375886"
+    />
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- Import Chart.js for plotting graphs -->
+    <!--   Chart.js is a library that generate the bar graph in the app. It's configured in script.js  -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"
+      defer
+    ></script>
+
+    <!-- Import slim-select -->
+    <!--  This makes the <select> full width and adds the option for search (thought we're not currently using it). It's configured in script.js   -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.20.0/slimselect.min.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.20.0/slimselect.min.css"
+    />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="topic-question-container">
+        <h1 class="header-text">Data For Progress</h1>
+
+        <h2 class="subhead">Presidential Primary First Debate Survey</h2>
+
+        <h3>Survey Question</h3>
+        <select id="topic" name="topic-select" class="form-select">
+          <!-- This first question is preselected so that a chart will show on page load -->
+          <option value="INEQUALITY" selected
+            >Agree/Disagree: Economic inequality is the root cause of most of
+            society’s problems.</option
+          >
+          <option value="pid3_condensed">What is your party preference?</option>
+          <option value="CLEAN"
+            >Do you support or oppose America fully adopting clean and renewable
+            energy by 2035 by using incentives?</option
+          >
+          <option value="UNITY"
+            >Regardless of who you voted for in the primary, who would you
+            choose for president in 2020?</option
+          >
+          <option value="SOCIETY"
+            >Agree/Disagree: It is wrong for a society to have billionaires
+            while there are people living in poverty.</option
+          >
+          <option value="CLASS"
+            >Agree/Disagree: The US economic system has made it impossible for
+            people in the working class to have a comfortable life.</option
+          >
+          <option value="AMNESTY"
+            >Do you support or oppose offering a path to citizenship to
+            undocumented immigrants currently in the United States?</option
+          >
+          <option value="PRED20"
+            >Who do you think is most likely to win the 2020 Democratic
+            nomination?</option
+          >
+          <option value="BORDER"
+            >Do you support building a wall along the border with US and
+            Mexico?</option
+          >
+          <option value="ABSNOT20"
+            >Who would you NOT want to become President? (even if it meant
+            Donald Trump winning re-election)</option
+          >
+          <option value="MAGICWAND20"
+            >If you could make any one candidate President, who would you
+            choose?</option
+          >
+
+          <option value="GREENJOB"
+            >Do you support or oppose giving every unemployed American who wants
+            one a job building energy-efficient infrastructure?</option
+          >
+
+          <option value="ALLEGIANCE"
+            >Agreee/Disagree: US companies building factories overseas shows
+            that they care about profits and not American workers.</option
+          >
+
+          <option value="DETAILS"
+            >Agree/Disagree: The best politicians are pragmatic and
+            detail-oriented.</option
+          >
+
+          <option value="PROCESS"
+            >Agree/Disagree: Our system of government has too many rules that
+            stand in the way of necessary change.</option
+          >
+          <option value="DEMPRIM20_horserace"
+            >Which candidate would you vote for in the 2020 Democratic
+            presidential primary or caucus in your state?</option
+          >
+
+          <!--  To add a new question;
+                    - consult topic-abbrevs.md to find a question that interests you: https://2019-dfp-datasette.glitch.me/csv-data/schema
+                    - Create a new html option: <option value="Variable name">What is the question?</option>
+                    - For value, put the corresponding "Variable" from the schema
+
+                    Here are a few samples to try out!:
+              -->
+          <!--  <option value="faminc_new">What was your family income last year?</option> -->
+          <!--  <option value="newsint">How often do you follow what's going on in government affairs?</option> -->
+          <!--  <option value="ideo3">In general, how would you describe your own political viewpoint?</option> -->
+        </select>
+      </section>
+
+      <section class="query-chart-container">
+        <div class="query-container">
+          <h3>Filter by Demographic</h3>
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Ethnicity</span>
+            <div class="demographic-select">
+              <select id="race4" name="race4" class="form-select">
+                <option value="">--</option>
+                <option value="1">White</option>
+                <option value="2">Black</option>
+                <option value="3">Hispanic</option>
+                <option value="4">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Gender</span>
+            <div class="demographic-select">
+              <select id="gender" name="gender" class="form-select">
+                <option value="">--</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Ideology</span>
+            <div class="demographic-select">
+              <select id="ideo3" name="ideo3" class="form-select">
+                <option value="">--</option>
+                <option value="1">Liberal/Very Liberal</option>
+                <option value="2">Moderate</option>
+                <option value="3">Conservative/Very conservative</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Age</span>
+            <div class="demographic-select">
+              <select id="age5" name="age5" class="form-select">
+                <option value="">--</option>
+                <option value="1">18-29</option>
+                <option value="2">30-44</option>
+                <option value="3">45-54</option>
+                <option value="4">55-64</option>
+                <option value="5">65+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Education</span>
+            <div class="demographic-select">
+              <select id="educ4" name="educ4" class="form-select">
+                <option value="">--</option>
+                <option value="1">High school or less</option>
+                <option value="2">Some college</option>
+                <option value="3">College grad</option>
+                <option value="4">Postgrad</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 
+          To add another demographic filter:
+          - the <select> name and id must match the name of the quesion "Variable" in the schema.
+          - each option value must match the value in the schema
+
+          For example, adding a question about where someone lives, we'd find the question in the schema:
+          https://2019-dfp-datasette.glitch.me/csv-data/schema?Variable__exact=urbancity
+          - then set the <select> name and id  to "urbancity"
+          - then set the values to their corresponding Responses. e.g. City = 1
+          
+          Here's an example:
+        -->
+          <!--         
+
+          <div class="demographic-form-row">
+            <span class="demographic-label">Urban vs Rural</span>
+             <div class="demographic-select">         
+                <select id="urbancity" name="urbancity" class="form-select">
+                  <option value="">--</option>
+                  <option value="1">City</option>
+                  <option value="2">Suburb</option>
+                  <option value="3">Town</option>
+                  <option value="4">Rural area</option>
+                </select>
+              </div>
+          </div>  -->
+
+          <!--    One last step: 
+                To make a new filter match the style of the others you have to add it to the script.js file 
+                Add it under "CREATE DEMOGRAPHIC FILTER DROPDOWNS"       
+        --></div>
+
+        <div class="chart-container">
+          <canvas
+            id="chart"
+            aria-label="A chart showing results of the query"
+            role="img"
+          ></canvas>
+          <!--         <p id="selected-topic" class="selected-topic"></p> -->
+          <p id="sample-size" class="sample-size"></p>
+        </div>
+      </section>
+
+      <div class="about-container">
+        <h2 class="about-header">About this project</h2>
+        <p>
+          Data for Progress is the think tank for the future of progressivism.
+          Their goal is to show how a progressive agenda can win nationwide.
+        </p>
+
+        <p>
+          They provide research, polling on left issues, and analysis to support
+          activists and advocacy groups, challenging conventional wisdom about
+          the American public that lack empirical support.
+        </p>
+
+        <p>
+          The Presidential Primary First Debate Survey is a survey of Democratic
+          primary voters fielded in July 2019 by YouGov Blue on behalf of Data
+          for Progress.
+        </p>
+
+        <p>
+          Unfortunately, the survey results don't represent everyone. Some
+          demographic groups may not be represented due to the size of the
+          dataset.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <ul>
+        <li>
+          🇺🇸 Data collected by
+          <a href="https://www.dataforprogress.org/">Data for Progress</a>.
+        </li>
+        <li>🎏 Built on <a href="https://glitch.com/">Glitch</a>!</li>
+        <li>
+          📊
+          <a href="https://2019-dfp-datasette.glitch.me/">See all the data</a>.
+        </li>
+        <li>
+          💻
+          <a href="https://2019-dfp-debate-results.glitch.me/"
+            >View the source code</a
+          >.
+        </li>
+        <li>
+          🔄
+          <a href="https://glitch.com/edit/#!/remix/2019-dfp-debate-results"
+            >Remix your own</a
+          >
+        </li>
+      </ul>
+    </footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+  </body>
+</html>
